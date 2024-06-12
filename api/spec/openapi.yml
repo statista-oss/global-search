@@ -802,7 +802,7 @@ components:
             xls_file:
               type: string
               description: 'The URL to download the Excel'
-            teaser_image_url:
+            teaser_image_urls:
               $ref: '#/components/schemas/TeaserImage'
             publishers:
               type: array
@@ -831,7 +831,7 @@ components:
         - $ref: '#/components/schemas/ERI'
         - type: object
           properties:
-            teaser_image_url:
+            teaser_image_urls:
               $ref: '#/components/schemas/TeaserImage'
     MarketInsight:
       title: MarketInsight
