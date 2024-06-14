@@ -12,8 +12,8 @@ info:
   title: Statista API
   contact:
     email: api@statista.com
-  version: 1.0.0
-  description: The Statista AI API 1.0
+  version: 2.8.0
+  description: The Statista API
 servers:
   - url: https://api.statista.ai/v1
 paths:
