@@ -766,6 +766,9 @@ components:
         subject:
           type: string
           description: 'The subtitle or secondary title'
+        is_premium:
+          type: boolean
+          description: 'is paid content or not'
         description:
           type: string
           description: 'The detailed description'
