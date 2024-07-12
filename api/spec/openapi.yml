@@ -132,7 +132,6 @@ paths:
       parameters:
         - $ref: '#/components/parameters/QueryParam'
         - $ref: '#/components/parameters/PlatformParam'
-        - $ref: '#/components/parameters/PremiumParam'
         - $ref: '#/components/parameters/OffsetParam'
         - $ref: '#/components/parameters/LimitParam'
         - $ref: '#/components/parameters/DateFromParam'
@@ -862,9 +861,6 @@ components:
             type: string
             format: date
             description: 'The date associated with the resource'
-          premium:
-            type: integer
-            description: 'is Premium or not'
           platform:
             type: string
             description: 'The Selected Platform'
