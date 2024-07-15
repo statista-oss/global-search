@@ -161,21 +161,33 @@ components:
       summary: "Returns a list of the searched Statistics"
       items:
         $ref: '#/components/schemas/Statistic'
+      total:
+        type: integer
+        description: 'Total number of Statistics.'
     Studies:
       type: array
       summary: "Returns a list of the searched Studies"
       items:
         $ref: '#/components/schemas/Study'
+      total:
+        type: integer
+        description: 'Total number of Studies.'
     Infographics:
       type: array
       summary: "Returns a list of the searched Infographics"
       items:
         $ref: '#/components/schemas/Infographic'
+      total:
+        type: integer
+        description: 'Total number of Infographics.'
     MarketInsights:
       type: array
       summary: "Returns a list of the searched MarketInsights"
       items:
         $ref: '#/components/schemas/MarketInsight'
+      total:
+        type: integer
+        description: 'Total number of Market Insights.'
     Industry:
       type: integer
       oneOf:
