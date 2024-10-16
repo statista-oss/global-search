@@ -199,6 +199,14 @@ components:
           title: es
         - const: https://www.statista.com/api/v2/industries_fr.json
           title: fr
+    Platform:
+      type: string
+      description: 'The language from which the content is retrieved'
+      enum:
+        - de
+        - en
+        - fr
+        - es
     Geolocation:
       type: integer
       oneOf:
@@ -780,6 +788,8 @@ components:
         is_premium:
           type: boolean
           description: 'is paid content or not'
+        platform:
+          $ref: '#/components/schemas/Platform'
         description:
           type: string
           description: 'The detailed description'
@@ -949,7 +959,7 @@ components:
   securitySchemes:
     api_key:
       type: apiKey
-      name: api_key
+      name: x-api-key
       in: header
   parameters:
     QueryParam:
@@ -964,13 +974,7 @@ components:
       in: query
       description: 'The platform/language the content shall be retrieved from.'
       schema:
-        type: string
-        default: en
-        enum:
-          - de
-          - en
-          - fr
-          - es
+        $ref: '#/components/schemas/Platform'
     PremiumParam:
       name: premium
       in: query
