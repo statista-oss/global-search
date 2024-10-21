@@ -154,6 +154,161 @@ paths:
           content:
             application/json:
               example: '{}'
+  /research-ai/v1/research_ai:
+    post:
+      summary: Submit a research question to the Research AI API
+      operationId: submit-research-question
+      tags:
+        - research-ai
+      requestBody:
+        description: Research question to be processed by Research AI
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                question:
+                  type: string
+                  description: "The research question that needs to be processed."
+                  example: "What are the economic impacts of climate change in Europe?"
+      responses:
+        '200':
+          description: 'Research question submitted successfully.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  research_token:
+                    type: string
+                    description: 'Unique token representing the research job.'
+        '422':
+          description: 'Invalid request - The question field is missing or improperly formatted.'
+        '403':
+          description: 'User is not authorized - No valid API key provided.'
+  /research-ai/v1/research_ai_status:
+    get:
+      summary: Get the status of a research job
+      operationId: get-research-status
+      tags:
+        - research-ai
+      parameters:
+        - name: research_token
+          in: query
+          required: true
+          description: "Unique token representing the research job to retrieve status for."
+          schema:
+            type: string
+            example: "tVHxJayN"
+      responses:
+        '200':
+          description: 'Status of the research job retrieved successfully.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  research_token:
+                    type: string
+                    description: 'Unique token representing the research job.'
+                  status:
+                    type: string
+                    description: 'The current status of the research job (e.g., requested, retrive_data, done).'
+                  response:
+                    type: object
+                    description: 'The research response if the job has been completed.'
+                    nullable: true
+                    properties:
+                      answer:
+                        type: string
+                        example: "Climate change is causing significant economic impacts across Europe..."
+                        errorMessage:
+                          type: string
+                          nullable: true
+                          example: null
+                      keyFacts:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            title:
+                              type: string
+                              example: "Economic Losses in the EU 2022"
+                            type:
+                              type: string
+                              example: "number"
+                            unit:
+                              type: string
+                              example: "bn€"
+                            value:
+                              type: string
+                              example: "52"
+                      sources:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            contentId:
+                              type: string
+                              example: "1386301"
+                            contentType:
+                              type: string
+                              example: "statistic"
+                            displayTypeId:
+                              type: integer
+                              example: 2
+                            graphicName:
+                              type: string
+                              nullable: true
+                              example: null
+                            isCharged:
+                              type: boolean
+                              example: true
+                            locale:
+                              type: string
+                              example: "German"
+                            parentId:
+                              type: string
+                              nullable: true
+                              example: null
+                            releasedAt:
+                              type: string
+                              format: date-time
+                              example: "2024-02-09T13:00:00Z"
+                            source:
+                              type: string
+                              example: "EEA"
+                            statisticType:
+                              type: integer
+                              example: 1
+                            surveyPeriod:
+                              type: string
+                              example: "1998 bis 2022"
+                            text:
+                              type: string
+                              example: "Im Jahr 2022 verursachten wetter- und klimabedingte Naturkatastrophen..."
+                            title:
+                              type: string
+                              example: "Wirtschaftliche Verluste durch Klimaextreme in der EU"
+                            titleShort:
+                              type: string
+                              example: "Klimaextreme in Europa: Wirtschaftliche Kosten bis 2022"
+                            updatedAt:
+                              type: string
+                              format: date-time
+                              example: "2024-03-22T10:42:14Z"
+                            url:
+                              type: string
+                              format: uri
+                              example: "https://www.statista.com/statistik/daten/studie/1386301/umfrage/"
+
+        '422':
+          description: 'Invalid request - The research_token parameter is missing or invalid.'
+        '404':
+          description: 'Invalid Researchb Token provided.'
+        '403':
+          description: 'User is not authorized - No valid API key provided.'
 components:
   schemas:
     Statistics:
