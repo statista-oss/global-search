@@ -979,12 +979,6 @@ components:
               description: 'The geolocation Ids'
               items:
                 $ref: '#/components/schemas/GeolocationObject'
-            pdf_file:
-              type: string
-              description: 'The URL to download the PDF'
-            xls_file:
-              type: string
-              description: 'The URL to download the Excel'
             teaser_image_urls:
               $ref: '#/components/schemas/TeaserImage'
             publishers:
